@@ -22,8 +22,8 @@ CriarMensagem("typescript");
 function LogMensagem(logar: boolean, msg: string, autor: string) {
     // Verifica se o log deve ser realizado
     if (logar === true) {
-        console.log(`a msg ${msg} foi enviada por ${autor}`);
-    }   
+        console.log(`A mensagem "${msg}" foi enviada por ${autor}`);
+    }
 }
 
 // Chama a função LogMensagem com logar como verdadeiro e falso
@@ -31,13 +31,13 @@ LogMensagem(true, 'log realizado', 'arthur');
 LogMensagem(false, 'log realizado', 'arthur');
 
 // Função que soma dois números e retorna o resultado
-function somar(numUm: number, numDois: number) {
+function somar(numUm: number, numDois: number): number {
     return numUm + numDois;
 }
 
 // Chama a função somar e armazena o resultado na variável 'resultado'
 const resultado = somar(1, 1);
-console.log("O resultado é da função somar: ", resultado);
+console.log("O resultado da função somar é:", resultado);
 
 // Função que subtrai dois números e retorna o resultado
 function subtrair(numUm: number, numDois: number): number {
@@ -46,26 +46,46 @@ function subtrair(numUm: number, numDois: number): number {
 
 // Chama a função subtrair e armazena o resultado na variável 'menos'
 const menos = subtrair(6, 5);
-console.log("O resultado é da função subtrair: ", menos);
+console.log("O resultado da função subtrair é:", menos);
 
-// Chama a função calculadora para diferentes operações
-calculadora("somar", 10, 30);
-calculadora("subtrair", 40, 100);
-calculadora("dividir", 10, 2);
+// Função que multiplica dois números e retorna o resultado
+function multiplicar(numUm: number, numDois: number): number {
+    return numUm * numDois;
+}
+
+// Chama a função multiplicar e armazena o resultado na variável 'vezes'
+const vezes = multiplicar(6, 5);
+console.log("O resultado da função multiplicar é:", vezes);
+
+// Função que divide dois números e retorna o resultado, tratando divisão por zero
+function dividir(numUm: number, numDois: number): number | string {
+    if (numDois === 0) {
+        return "Erro: Divisão por zero não é permitida";
+    }
+    return numUm / numDois;
+}
+
+// Chama a função dividir e exibe o resultado
+const divisao = dividir(6, 5);
+console.log("O resultado da função dividir é:", divisao);
 
 // Função calculadora que executa operações aritméticas com base na entrada
-function calculadora(operacao: string, numUm: number, numDois: number) {
+function calculadora(operacao: string, numUm: number, numDois: number): number | string {
     // Verifica a operação e realiza o cálculo correspondente
-    if (operacao == "somar") {
-        return numUm + numDois;
-    } else if (operacao == 'subtrair') {
-        return numUm - numDois;
-    } else if (operacao == 'dividir') {
-        return numUm / numDois;
+    if (operacao === "somar") {
+        return somar(numUm, numDois);
+    } else if (operacao === 'subtrair') {
+        return subtrair(numUm, numDois);
+    } else if (operacao === 'dividir') {
+        return dividir(numUm, numDois);
+    } else if (operacao === 'multiplicar') {
+        return multiplicar(numUm, numDois);
     }
+    return "Operação inválida";
 }
 
 // Exibe os resultados das operações da calculadora
-console.log(calculadora("somar", 10, 30));
-console.log(calculadora("subtrair", 40, 100));
-console.log(calculadora("dividir", 40, 2));
+console.log("Calculadora somar:", calculadora("somar", 10, 30));
+console.log("Calculadora subtrair:", calculadora("subtrair", 40, 100));
+console.log("Calculadora dividir:", calculadora("dividir", 40, 2));
+console.log("Calculadora multiplicar:", calculadora("multiplicar", 6, 5));
